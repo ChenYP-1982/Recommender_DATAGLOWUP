@@ -70,9 +70,9 @@ Para o nosso dataset de  **anime** temos as seguintes caracteristicas para os ti
 * Esparsidade é um conceito que utilizamos para medir quantos dados estão faltando no nosso dataset para entendermos o usuário. Os usuários não costumam avaliar a maioria dos itens que você tem no seu sistema de recomendação.
 * A _overall sparsity_ (OS) pode ser calculada como:
 
-$$OS = 1 - \frac{\#ratings}{\#users \times \#items}$$
+![Local Image](/images/overrall_sparcity.png)
 
-onde $\#ratings$ é o número de avaliações dadas, $\#users$ é o número de usuários no sistema e $\#items$ é o número de itens no catálogo. **Quanto menos avaliações tivermos dos usuários, maior será a esparsidade**.
+onde **ratings** é o número de avaliações dadas, **users** é o número de usuários no sistema e **items** é o número de itens no catálogo. **Quanto menos avaliações tivermos dos usuários, maior será a esparsidade**.
 
 Exemplo:
 
@@ -83,15 +83,7 @@ No nosso dataset temos um total de **99%** de esparcidade, isso corrobora a idei
 
 ![Local Image](images/sparcity.png)
 
-De forma análoga à _overall sparsity_ , também podemos calcular a _User Specific Sparsity_ (USS) e a _Item Specific Sparsity_ (ISS) da seguinte forma:
 
-$$USS(\mathbf{u}) = 1 - \frac{\#ratings_\mathbf{u}}{\#items}$$
-
-$$ISS(\mathbf{i}) = 1 - \frac{\#ratings_\mathbf{i}}{\#users}$$
-
-Onde $\#ratings_\mathbf{u}$ é a quantidade de avaliações do usuário $\mathbf{u}$ e $\#ratings_\mathbf{i}$ é a quantidade de avaliações do item $\mathbf{i}$.
-
-Exemplos:
 
 - Usuário com poucas avaliações: $USS(\mathbf{u}) \rightarrow 100\%$
 - Itens com muitas avaliações: $ISS(\mathbf{i}) \rightarrow 0\%$
@@ -107,8 +99,77 @@ Com esses calculos chegamos na conclusao tambem que a os nossos usuarios nao ava
 E com isso tambem consiguimos entender melhor quais sao as preferencias dos usuarios e conseguindo gerear assim duas matriz uma de preferencia com 0,1, e outra de similaridade com valores **entre** 0 a 1, onde valores mais proximos a 1 sao itens mais similares
 
 * Matrix preferencia
-![Local Image](images/matriz_pref.png)
+![Local Image](/images/matriz_pref.png)
 
 * Matriz similaridade entre os titulos
   
- ![Local Image](images/matriz_pref.png) 
+ ![Local Image](/images/similarity.png)
+
+ <div style="background-color: lightblue; padding: 10px;">
+    <h2> Recomendacoes top N nao personalizadas
+</div> 
+
+Com isso dados fornecidos conseguimos chegar em algumas recommendacoes para 
+
+* Top mais avaliado
+  |                 Titulo                           |  Score    |
+  |--------------------------------------------------|-----------|
+  |                  Death Note		                 |   39340   |
+  |                  Sword Art Online                |	30582    |
+  |                  Shingeki no Kyojin              |	29583    |
+  |             Code Geass Hangyaku no Lelouch	     |	27717    |
+  |                   Elfen Lied	  	             |  27506    |
+  |                  Angel Beats		             |  27183    |
+  |                  Naruto		                     |  25925    |
+    
+* Indicacao caso fosse pelo type: Exemplo TV
+  
+  |             Titulo                           |  Score|
+  |----------------------------------------------|-------|
+  |             Death Note                       | 30582 |
+  |            Shingeki no Kyojin                | 29583 |
+  |            Code Geass Hangyaku no Lelouch    | 27717 |
+
+
+
+<div style="background-color: lightblue; padding: 10px;">
+    <h2> Collaborative Filtering
+</div>
+
+* Recomendacao por item: Exemplo Naruto
+  
+  |             Titulo                           |  Score|
+  |----------------------------------------------|-------|
+  |             Naruto                           | 1.000 |
+  |            Death Note                        | 0.551 |
+  |            Fullmetal Alchemist               | 0.477 |
+  |            Bleach                            | 0.471 |
+
+
+* Recomendacao para os 200 usuarios mais avaliaram o nossos catalogos
+
+  |             Titulo                           |  Score|
+  |----------------------------------------------|-------|
+  |             Naruto                           | 1.000 |
+  |            Naruto Movie 1                    | 0.798 |
+  |            Naruto Movie 2                    | 0.776 |
+  |            Soul Eater                        | 0.772 |
+  |            Naruto Shippuuden Movie 1         | 0.762 |
+
+
+<div style="background-color: lightblue; padding: 10px;">
+    <h2> Sugestoes para equipe 
+</div>
+
+1. Inserir datas nos campo rating( quando foi dado) ou no campo do anime ( quando foi lancado)
+2. Colocar feedbacks, conseguindo assim gerar recomendacoes usando palavras chaves e ou sentimento
+3. Classificao de nota de 1 a 5 ou no sistema 1 para nao gostei, 2 para gostei, 3 para amei
+4. Para reduzir esparcidade, sugere-se que o feedback seja intrinseco. 
+5. Usando esses dois sistemas podemos depois comparar se houve melhora na esparcidade para podermos assim gerar as recomendacoes de maneira mais assertiva
+
+<div style="background-color: lightblue; padding: 10px;">
+    <h2> Feel free to contact
+</div>
+
+* email: chenyenpin1982@gmail.com
+* linkedIn:https://www.linkedin.com/in/chen-yen-pin/
